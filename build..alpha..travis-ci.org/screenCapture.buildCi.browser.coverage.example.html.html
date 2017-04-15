@@ -1,6 +1,4 @@
-<!doctype html>
-<html lang="en">
-<head>
+<html lang="en"><head>
     <title>Code coverage report for node-npmtest-forever/forever/lib/forever.js</title>
     <meta charset="utf-8">
     <style>
@@ -210,11 +208,11 @@
         
         Ignored: <span class="metric"><span class="ignore-none">none</span></span> &nbsp;&nbsp;&nbsp;&nbsp;
     </h2>
-    <div class="path"><a href="../../../index.html">All files</a> &#187; <a href="index.html">node-npmtest-forever/forever/lib/</a> &#187; forever.js</div>
+    <div class="path"><a href="../../../index.html">All files</a> » <a href="index.html">node-npmtest-forever/forever/lib/</a> » forever.js</div>
 </div>
 <div class="body">
 <pre><table class="coverage">
-<tr><td class="line-count">1
+<tbody><tr><td class="line-count">1
 2
 3
 4
@@ -2353,7 +2351,7 @@ forever.out = new (winston.Logger)({
 forever.initialized  = false;
 forever.kill         = require('forever-monitor').kill;
 forever.checkProcess = require('forever-monitor').checkProcess;
-forever.root         = process.env.FOREVER_ROOT || path.join(process.env.HOME || <span class="branch-1 cbranch-no" title="branch not covered" >process.env.USERPROFILE </span>|| <span class="branch-2 cbranch-no" title="branch not covered" >'/root',</span> '.forever');
+forever.root         = process.env.FOREVER_ROOT || path.join(process.env.HOME || <span class="branch-1 cbranch-no" title="branch not covered">process.env.USERPROFILE </span>|| <span class="branch-2 cbranch-no" title="branch not covered">'/root',</span> '.forever');
 forever.config       = new nconf.File({ file: path.join(forever.root, 'config.json') });
 forever.Forever      = forever.Monitor = require('forever-monitor').Monitor;
 forever.Worker       = require('./forever/worker').Worker;
@@ -2371,23 +2369,23 @@ exports.version = require('../package').version;
 // Attempts to read the files from `sockPath` if the directory does not exist,
 // then it is created using `mkdirp`.
 //
-<span class="fstat-no" title="function not covered" >function getSockets(sockPath, callback) {</span>
-<span class="cstat-no" title="statement not covered" >  var sockets;</span>
+<span class="fstat-no" title="function not covered">function getSockets(sockPath, callback) {</span>
+<span class="cstat-no" title="statement not covered">  var sockets;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  try {</span>
-<span class="cstat-no" title="statement not covered" >    sockets = fs.readdirSync(sockPath);</span>
+<span class="cstat-no" title="statement not covered">  try {</span>
+<span class="cstat-no" title="statement not covered">    sockets = fs.readdirSync(sockPath);</span>
   }
   catch (ex) {
-<span class="cstat-no" title="statement not covered" >    if (ex.code !== 'ENOENT') {</span>
-<span class="cstat-no" title="statement not covered" >      return callback(ex);</span>
+<span class="cstat-no" title="statement not covered">    if (ex.code !== 'ENOENT') {</span>
+<span class="cstat-no" title="statement not covered">      return callback(ex);</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return mkdirp(sockPath, '0755', <span class="fstat-no" title="function not covered" >function (err) {</span></span>
-<span class="cstat-no" title="statement not covered" >      return err ? callback(err) : callback(null, []);</span>
+<span class="cstat-no" title="statement not covered">    return mkdirp(sockPath, '0755', <span class="fstat-no" title="function not covered">function (err) {</span></span>
+<span class="cstat-no" title="statement not covered">      return err ? callback(err) : callback(null, []);</span>
     });
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  callback(null, sockets);</span>
+<span class="cstat-no" title="statement not covered">  callback(null, sockets);</span>
 }
 &nbsp;
 //
@@ -2395,51 +2393,51 @@ exports.version = require('../package').version;
 // #### @callback {function} Continuation to respond to when complete.
 // Returns all data for processes managed by forever.
 //
-<span class="fstat-no" title="function not covered" >function getAllProcesses(callback) {</span>
-<span class="cstat-no" title="statement not covered" >  var sockPath = forever.config.get('sockPath');</span>
+<span class="fstat-no" title="function not covered">function getAllProcesses(callback) {</span>
+<span class="cstat-no" title="statement not covered">  var sockPath = forever.config.get('sockPath');</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function getProcess(name, next) {</span>
-<span class="cstat-no" title="statement not covered" >    var fullPath = path.join(sockPath, name),</span>
+<span class="fstat-no" title="function not covered">  function getProcess(name, next) {</span>
+<span class="cstat-no" title="statement not covered">    var fullPath = path.join(sockPath, name),</span>
         socket = new nssocket.NsSocket();
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (process.platform === 'win32') {</span>
+<span class="cstat-no" title="statement not covered">    if (process.platform === 'win32') {</span>
       // it needs the prefix
-<span class="cstat-no" title="statement not covered" >      fullPath = '\\\\.\\pipe\\' + fullPath;</span>
+<span class="cstat-no" title="statement not covered">      fullPath = '\\\\.\\pipe\\' + fullPath;</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    socket.connect(fullPath, <span class="fstat-no" title="function not covered" >function (err) {</span></span>
-<span class="cstat-no" title="statement not covered" >      if (err) {</span>
-<span class="cstat-no" title="statement not covered" >        next(err);</span>
+<span class="cstat-no" title="statement not covered">    socket.connect(fullPath, <span class="fstat-no" title="function not covered">function (err) {</span></span>
+<span class="cstat-no" title="statement not covered">      if (err) {</span>
+<span class="cstat-no" title="statement not covered">        next(err);</span>
       }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      socket.dataOnce(['data'], <span class="fstat-no" title="function not covered" >function (data) {</span></span>
-<span class="cstat-no" title="statement not covered" >        data.socket = fullPath;</span>
-<span class="cstat-no" title="statement not covered" >        next(null, data);</span>
-<span class="cstat-no" title="statement not covered" >        socket.end();</span>
+<span class="cstat-no" title="statement not covered">      socket.dataOnce(['data'], <span class="fstat-no" title="function not covered">function (data) {</span></span>
+<span class="cstat-no" title="statement not covered">        data.socket = fullPath;</span>
+<span class="cstat-no" title="statement not covered">        next(null, data);</span>
+<span class="cstat-no" title="statement not covered">        socket.end();</span>
       });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      socket.send(['data']);</span>
+<span class="cstat-no" title="statement not covered">      socket.send(['data']);</span>
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    socket.on('error', <span class="fstat-no" title="function not covered" >function (err) {</span></span>
-<span class="cstat-no" title="statement not covered" >      if (err.code === 'ECONNREFUSED') {</span>
-<span class="cstat-no" title="statement not covered" >        fs.unlink(fullPath, <span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >          next();</span>
+<span class="cstat-no" title="statement not covered">    socket.on('error', <span class="fstat-no" title="function not covered">function (err) {</span></span>
+<span class="cstat-no" title="statement not covered">      if (err.code === 'ECONNREFUSED') {</span>
+<span class="cstat-no" title="statement not covered">        fs.unlink(fullPath, <span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">          next();</span>
         });
       }
       else {
-<span class="cstat-no" title="statement not covered" >        next();</span>
+<span class="cstat-no" title="statement not covered">        next();</span>
       }
     });
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  getSockets(sockPath, <span class="fstat-no" title="function not covered" >function (err, sockets) {</span></span>
-<span class="cstat-no" title="statement not covered" >    if (err || (sockets &amp;&amp; sockets.length === 0)) {</span>
-<span class="cstat-no" title="statement not covered" >      return callback(err);</span>
+<span class="cstat-no" title="statement not covered">  getSockets(sockPath, <span class="fstat-no" title="function not covered">function (err, sockets) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (err || (sockets &amp;&amp; sockets.length === 0)) {</span>
+<span class="cstat-no" title="statement not covered">      return callback(err);</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    async.map(sockets, getProcess, <span class="fstat-no" title="function not covered" >function (err, processes) {</span></span>
-<span class="cstat-no" title="statement not covered" >      callback(err, processes.filter(Boolean));</span>
+<span class="cstat-no" title="statement not covered">    async.map(sockets, getProcess, <span class="fstat-no" title="function not covered">function (err, processes) {</span></span>
+<span class="cstat-no" title="statement not covered">      callback(err, processes.filter(Boolean));</span>
     });
   });
 }
@@ -2449,9 +2447,9 @@ exports.version = require('../package').version;
 // Returns the set of all pids managed by forever.
 // e.x. [{ pid: 12345, foreverPid: 12346 }, ...]
 //
-<span class="fstat-no" title="function not covered" >function getAllPids(processes) {</span>
-<span class="cstat-no" title="statement not covered" >  return !processes ? null : processes.map(<span class="fstat-no" title="function not covered" >function (proc) {</span></span>
-<span class="cstat-no" title="statement not covered" >    return {</span>
+<span class="fstat-no" title="function not covered">function getAllPids(processes) {</span>
+<span class="cstat-no" title="statement not covered">  return !processes ? null : processes.map(<span class="fstat-no" title="function not covered">function (proc) {</span></span>
+<span class="cstat-no" title="statement not covered">    return {</span>
       pid: proc.pid,
       foreverPid: proc.foreverPid
     };
@@ -2467,25 +2465,25 @@ exports.version = require('../package').version;
 // ####                  If not provided -&gt; action will be sent to all targets.
 // Returns emitter that you can use to handle events on failure or success (i.e 'error' or &lt;event&gt;)
 //
-<span class="fstat-no" title="function not covered" >function stopOrRestart(action, event, format, target) {</span>
-<span class="cstat-no" title="statement not covered" >  var emitter = new events.EventEmitter();</span>
+<span class="fstat-no" title="function not covered">function stopOrRestart(action, event, format, target) {</span>
+<span class="cstat-no" title="statement not covered">  var emitter = new events.EventEmitter();</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function sendAction(proc, next) {</span>
-<span class="cstat-no" title="statement not covered" >    var socket = new nssocket.NsSocket();</span>
+<span class="fstat-no" title="function not covered">  function sendAction(proc, next) {</span>
+<span class="cstat-no" title="statement not covered">    var socket = new nssocket.NsSocket();</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >    function onMessage(data) {</span>
+<span class="fstat-no" title="function not covered">    function onMessage(data) {</span>
       //
       // Cleanup the socket.
       //
-<span class="cstat-no" title="statement not covered" >      socket.undata([action, 'ok'],    onMessage);</span>
-<span class="cstat-no" title="statement not covered" >      socket.undata([action, 'error'], onMessage);</span>
-<span class="cstat-no" title="statement not covered" >      socket.end();</span>
+<span class="cstat-no" title="statement not covered">      socket.undata([action, 'ok'],    onMessage);</span>
+<span class="cstat-no" title="statement not covered">      socket.undata([action, 'error'], onMessage);</span>
+<span class="cstat-no" title="statement not covered">      socket.end();</span>
 &nbsp;
       //
       // Messages are only sent back from error cases. The event
       // calling context is available from `nssocket`.
       //
-<span class="cstat-no" title="statement not covered" >      var message = data &amp;&amp; data.message,</span>
+<span class="cstat-no" title="statement not covered">      var message = data &amp;&amp; data.message,</span>
           type    = this.event.slice().pop();
 &nbsp;
       //
@@ -2495,73 +2493,73 @@ exports.version = require('../package').version;
       // Remark (indexzero): We should probably warn instead of emitting an error in `forever-monitor`,
       // OR handle that error in `bin/worker` for better RPC.
       //
-<span class="cstat-no" title="statement not covered" >      return type === 'error' &amp;&amp; /is not running/.test(message)</span>
+<span class="cstat-no" title="statement not covered">      return type === 'error' &amp;&amp; /is not running/.test(message)</span>
         ? next(new Error(message))
         : next(null, data);
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    socket.connect(proc.socket, <span class="fstat-no" title="function not covered" >function (err) {</span></span>
-<span class="cstat-no" title="statement not covered" >      if (err) {</span>
-<span class="cstat-no" title="statement not covered" >        next(err);</span>
+<span class="cstat-no" title="statement not covered">    socket.connect(proc.socket, <span class="fstat-no" title="function not covered">function (err) {</span></span>
+<span class="cstat-no" title="statement not covered">      if (err) {</span>
+<span class="cstat-no" title="statement not covered">        next(err);</span>
       }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      socket.dataOnce([action, 'ok'],    onMessage);</span>
-<span class="cstat-no" title="statement not covered" >      socket.dataOnce([action, 'error'], onMessage);</span>
-<span class="cstat-no" title="statement not covered" >      socket.send([action]);</span>
+<span class="cstat-no" title="statement not covered">      socket.dataOnce([action, 'ok'],    onMessage);</span>
+<span class="cstat-no" title="statement not covered">      socket.dataOnce([action, 'error'], onMessage);</span>
+<span class="cstat-no" title="statement not covered">      socket.send([action]);</span>
     });
 &nbsp;
     //
     // Remark (indexzero): This is a race condition, but unlikely to ever hit since
     // if the socket errors we will never get any data in the first place...
     //
-<span class="cstat-no" title="statement not covered" >    socket.on('error', <span class="fstat-no" title="function not covered" >function (err) {</span></span>
-<span class="cstat-no" title="statement not covered" >      next(err);</span>
+<span class="cstat-no" title="statement not covered">    socket.on('error', <span class="fstat-no" title="function not covered">function (err) {</span></span>
+<span class="cstat-no" title="statement not covered">      next(err);</span>
     });
   }
 &nbsp;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  getAllProcesses(<span class="fstat-no" title="function not covered" >function (err, processes) {</span></span>
-<span class="cstat-no" title="statement not covered" >    if (err) {</span>
-<span class="cstat-no" title="statement not covered" >      return process.nextTick(<span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >        emitter.emit('error', err);</span>
+<span class="cstat-no" title="statement not covered">  getAllProcesses(<span class="fstat-no" title="function not covered">function (err, processes) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (err) {</span>
+<span class="cstat-no" title="statement not covered">      return process.nextTick(<span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">        emitter.emit('error', err);</span>
       });
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    var procs;</span>
-<span class="cstat-no" title="statement not covered" >    if (target !== undefined &amp;&amp; target !== null) {</span>
-<span class="cstat-no" title="statement not covered" >      if (isNaN(target)) {</span>
-<span class="cstat-no" title="statement not covered" >        procs = forever.findByScript(target, processes);</span>
+<span class="cstat-no" title="statement not covered">    var procs;</span>
+<span class="cstat-no" title="statement not covered">    if (target !== undefined &amp;&amp; target !== null) {</span>
+<span class="cstat-no" title="statement not covered">      if (isNaN(target)) {</span>
+<span class="cstat-no" title="statement not covered">        procs = forever.findByScript(target, processes);</span>
       }
-<span class="cstat-no" title="statement not covered" >      procs = procs</span>
+<span class="cstat-no" title="statement not covered">      procs = procs</span>
         || forever.findById(target, processes)
         || forever.findByIndex(target, processes)
         || forever.findByUid(target, processes)
         || forever.findByPid(target, processes);
     }
     else {
-<span class="cstat-no" title="statement not covered" >      procs = processes;</span>
+<span class="cstat-no" title="statement not covered">      procs = processes;</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (procs &amp;&amp; procs.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >      async.map(procs, sendAction, <span class="fstat-no" title="function not covered" >function (err, results) {</span></span>
-<span class="cstat-no" title="statement not covered" >        if (err) {</span>
-<span class="cstat-no" title="statement not covered" >          emitter.emit('error', err);</span>
+<span class="cstat-no" title="statement not covered">    if (procs &amp;&amp; procs.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">      async.map(procs, sendAction, <span class="fstat-no" title="function not covered">function (err, results) {</span></span>
+<span class="cstat-no" title="statement not covered">        if (err) {</span>
+<span class="cstat-no" title="statement not covered">          emitter.emit('error', err);</span>
         }
 &nbsp;
         //
         // Remark (indexzero): we should do something with the results.
         //
-<span class="cstat-no" title="statement not covered" >        emitter.emit(event, forever.format(format, procs));</span>
+<span class="cstat-no" title="statement not covered">        emitter.emit(event, forever.format(format, procs));</span>
       });
     }
     else {
-<span class="cstat-no" title="statement not covered" >      process.nextTick(<span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >        emitter.emit('error', new Error('Cannot find forever process: ' + target));</span>
+<span class="cstat-no" title="statement not covered">      process.nextTick(<span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">        emitter.emit('error', new Error('Cannot find forever process: ' + target));</span>
       });
     }
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return emitter;</span>
+<span class="cstat-no" title="statement not covered">  return emitter;</span>
 }
 &nbsp;
 //
@@ -2587,9 +2585,9 @@ forever.load = function (options) {
   // If forever is initalized and the config directories are identical
   // simply return without creating directories
   //
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (forever.initialized &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >forever.config.get('root') === options.root </span>&amp;&amp;
-<span class="branch-2 cbranch-no" title="branch not covered" >    forever.config.get('pidPath') === options.pidPath)</span> {
-<span class="cstat-no" title="statement not covered" >    return;</span>
+  <span class="missing-if-branch" title="if path not taken">I</span>if (forever.initialized &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered">forever.config.get('root') === options.root </span>&amp;&amp;
+<span class="branch-2 cbranch-no" title="branch not covered">    forever.config.get('pidPath') === options.pidPath)</span> {
+<span class="cstat-no" title="statement not covered">    return;</span>
   }
 &nbsp;
   forever.config = new nconf.File({ file: path.join(options.root, 'config.json') });
@@ -2607,7 +2605,7 @@ forever.load = function (options) {
   // Setup the columns for `forever list`.
   //
   options.columns  = options.columns  || forever.config.get('columns');
-  <span class="missing-if-branch" title="else path not taken" >E</span>if (!options.columns) {
+  <span class="missing-if-branch" title="else path not taken">E</span>if (!options.columns) {
     options.columns = [
       'uid', 'command', 'script', 'forever', 'pid', 'id', 'logfile', 'uptime'
     ];
@@ -2631,12 +2629,12 @@ forever.load = function (options) {
   //
   options.debug = options.debug || forever.config.get('debug') || false;
 &nbsp;
-  <span class="missing-if-branch" title="if path not taken" >I</span>if (options.debug) {
+  <span class="missing-if-branch" title="if path not taken">I</span>if (options.debug) {
     //
     // If we have been indicated to debug this forever process
     // then setup `forever._debug` to be an instance of `winston.Logger`.
     //
-<span class="cstat-no" title="statement not covered" >    forever._debug();</span>
+<span class="cstat-no" title="statement not covered">    forever._debug();</span>
   }
 &nbsp;
   //
@@ -2671,12 +2669,12 @@ forever.load = function (options) {
 // ### @private function _debug ()
 // Sets up debugging for this forever process
 //
-forever._debug = <span class="fstat-no" title="function not covered" >function () {</span>
-<span class="cstat-no" title="statement not covered" >  var debug = forever.config.get('debug');</span>
+forever._debug = <span class="fstat-no" title="function not covered">function () {</span>
+<span class="cstat-no" title="statement not covered">  var debug = forever.config.get('debug');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (!debug) {</span>
-<span class="cstat-no" title="statement not covered" >    forever.config.set('debug', true);</span>
-<span class="cstat-no" title="statement not covered" >    forever.log.add(winston.transports.File, {</span>
+<span class="cstat-no" title="statement not covered">  if (!debug) {</span>
+<span class="cstat-no" title="statement not covered">    forever.config.set('debug', true);</span>
+<span class="cstat-no" title="statement not covered">    forever.log.add(winston.transports.File, {</span>
       level: 'silly',
       filename: path.join(forever.config.get('root'), 'forever.debug.log')
     });
@@ -2697,21 +2695,21 @@ forever.load();
 // Ensures that the logFile doesn't exist and that
 // the target script does exist before executing callback.
 //
-forever.stat = <span class="fstat-no" title="function not covered" >function (logFile, script, callback) {</span>
-<span class="cstat-no" title="statement not covered" >  var logAppend;</span>
+forever.stat = <span class="fstat-no" title="function not covered">function (logFile, script, callback) {</span>
+<span class="cstat-no" title="statement not covered">  var logAppend;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (arguments.length === 4) {</span>
-<span class="cstat-no" title="statement not covered" >    logAppend = callback;</span>
-<span class="cstat-no" title="statement not covered" >    callback = arguments[3];</span>
+<span class="cstat-no" title="statement not covered">  if (arguments.length === 4) {</span>
+<span class="cstat-no" title="statement not covered">    logAppend = callback;</span>
+<span class="cstat-no" title="statement not covered">    callback = arguments[3];</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  fs.stat(script, <span class="fstat-no" title="function not covered" >function (err, stats) {</span></span>
-<span class="cstat-no" title="statement not covered" >    if (err) {</span>
-<span class="cstat-no" title="statement not covered" >      return callback(new Error('script ' + script + ' does not exist.'));</span>
+<span class="cstat-no" title="statement not covered">  fs.stat(script, <span class="fstat-no" title="function not covered">function (err, stats) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (err) {</span>
+<span class="cstat-no" title="statement not covered">      return callback(new Error('script ' + script + ' does not exist.'));</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    return logAppend ? callback(null) : fs.stat(logFile, <span class="fstat-no" title="function not covered" >function (err, stats) {</span></span>
-<span class="cstat-no" title="statement not covered" >      return !err</span>
+<span class="cstat-no" title="statement not covered">    return logAppend ? callback(null) : fs.stat(logFile, <span class="fstat-no" title="function not covered">function (err, stats) {</span></span>
+<span class="cstat-no" title="statement not covered">      return !err</span>
         ? callback(new Error('log file ' + logFile + ' exists. Use the -a or --append option to append log.'))
         : callback(null);
     });
@@ -2724,21 +2722,21 @@ forever.stat = <span class="fstat-no" title="function not covered" >function (lo
 // #### @options {Object} Configuration for forever instance.
 // Starts a script with forever
 //
-forever.start = <span class="fstat-no" title="function not covered" >function (script, options) {</span>
-<span class="cstat-no" title="statement not covered" >  if (!options.uid) {</span>
-<span class="cstat-no" title="statement not covered" >    options.uid = utile.randomString(4).replace(/^\-/, '_');</span>
+forever.start = <span class="fstat-no" title="function not covered">function (script, options) {</span>
+<span class="cstat-no" title="statement not covered">  if (!options.uid) {</span>
+<span class="cstat-no" title="statement not covered">    options.uid = utile.randomString(4).replace(/^\-/, '_');</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (!options.logFile) {</span>
-<span class="cstat-no" title="statement not covered" >    options.logFile = forever.logFilePath(options.uid + '.log');</span>
+<span class="cstat-no" title="statement not covered">  if (!options.logFile) {</span>
+<span class="cstat-no" title="statement not covered">    options.logFile = forever.logFilePath(options.uid + '.log');</span>
   }
 &nbsp;
   //
   // Create the monitor, log events, and start.
   //
-<span class="cstat-no" title="statement not covered" >  var monitor = new forever.Monitor(script, options);</span>
-<span class="cstat-no" title="statement not covered" >  forever.logEvents(monitor);</span>
-<span class="cstat-no" title="statement not covered" >  return monitor.start();</span>
+<span class="cstat-no" title="statement not covered">  var monitor = new forever.Monitor(script, options);</span>
+<span class="cstat-no" title="statement not covered">  forever.logEvents(monitor);</span>
+<span class="cstat-no" title="statement not covered">  return monitor.start();</span>
 };
 &nbsp;
 //
@@ -2747,13 +2745,13 @@ forever.start = <span class="fstat-no" title="function not covered" >function (s
 // #### @options {Object} Configuration for forever instance.
 // Starts a script with forever as a daemon
 //
-forever.startDaemon = <span class="fstat-no" title="function not covered" >function (script, options) {</span>
-<span class="cstat-no" title="statement not covered" >  options         = options || {};</span>
-<span class="cstat-no" title="statement not covered" >  options.uid     = options.uid || utile.randomString(4).replace(/^\-/, '_');</span>
-<span class="cstat-no" title="statement not covered" >  options.logFile = forever.logFilePath(options.logFile || forever.config.get('logFile') || options.uid + '.log');</span>
-<span class="cstat-no" title="statement not covered" >  options.pidFile = forever.pidFilePath(options.pidFile || forever.config.get('pidFile') || options.uid + '.pid');</span>
+forever.startDaemon = <span class="fstat-no" title="function not covered">function (script, options) {</span>
+<span class="cstat-no" title="statement not covered">  options         = options || {};</span>
+<span class="cstat-no" title="statement not covered">  options.uid     = options.uid || utile.randomString(4).replace(/^\-/, '_');</span>
+<span class="cstat-no" title="statement not covered">  options.logFile = forever.logFilePath(options.logFile || forever.config.get('logFile') || options.uid + '.log');</span>
+<span class="cstat-no" title="statement not covered">  options.pidFile = forever.pidFilePath(options.pidFile || forever.config.get('pidFile') || options.uid + '.pid');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  var monitor, outFD, errFD, monitorPath;</span>
+<span class="cstat-no" title="statement not covered">  var monitor, outFD, errFD, monitorPath;</span>
 &nbsp;
   //
   // This log file is forever's log file - the user's outFile and errFile
@@ -2761,34 +2759,34 @@ forever.startDaemon = <span class="fstat-no" title="function not covered" >funct
   // the app's output, as well as messages from the monitor process, where
   // applicable.
   //
-<span class="cstat-no" title="statement not covered" >  outFD = fs.openSync(options.logFile, 'a');</span>
-<span class="cstat-no" title="statement not covered" >  errFD = fs.openSync(options.logFile, 'a');</span>
-<span class="cstat-no" title="statement not covered" >  monitorPath = path.resolve(__dirname, '..', 'bin', 'monitor');</span>
+<span class="cstat-no" title="statement not covered">  outFD = fs.openSync(options.logFile, 'a');</span>
+<span class="cstat-no" title="statement not covered">  errFD = fs.openSync(options.logFile, 'a');</span>
+<span class="cstat-no" title="statement not covered">  monitorPath = path.resolve(__dirname, '..', 'bin', 'monitor');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  monitor = spawn(process.execPath, [monitorPath, script], {</span>
+<span class="cstat-no" title="statement not covered">  monitor = spawn(process.execPath, [monitorPath, script], {</span>
     stdio: ['ipc', outFD, errFD],
     detached: true
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  monitor.on('exit', <span class="fstat-no" title="function not covered" >function (code) {</span></span>
-<span class="cstat-no" title="statement not covered" >    console.error('Monitor died unexpectedly with exit code %d', code);</span>
+<span class="cstat-no" title="statement not covered">  monitor.on('exit', <span class="fstat-no" title="function not covered">function (code) {</span></span>
+<span class="cstat-no" title="statement not covered">    console.error('Monitor died unexpectedly with exit code %d', code);</span>
   });
 &nbsp;
   // transmit options to daemonic(child) process, keep configuration lineage.
-<span class="cstat-no" title="statement not covered" >  options._loadedOptions = this._loadedOptions;</span>
+<span class="cstat-no" title="statement not covered">  options._loadedOptions = this._loadedOptions;</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  monitor.send(JSON.stringify(options));</span>
+<span class="cstat-no" title="statement not covered">  monitor.send(JSON.stringify(options));</span>
 &nbsp;
   // close the ipc communication channel with the monitor
   // otherwise the corresponding events listeners will prevent
   // the exit of the current process (observed with node 0.11.9)
-<span class="cstat-no" title="statement not covered" >  monitor.disconnect();</span>
+<span class="cstat-no" title="statement not covered">  monitor.disconnect();</span>
 &nbsp;
   // make sure the monitor is unref() and does not prevent the
   // exit of the current process
-<span class="cstat-no" title="statement not covered" >  monitor.unref();</span>
+<span class="cstat-no" title="statement not covered">  monitor.unref();</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return monitor;</span>
+<span class="cstat-no" title="statement not covered">  return monitor;</span>
 };
 &nbsp;
 //
@@ -2797,36 +2795,36 @@ forever.startDaemon = <span class="fstat-no" title="function not covered" >funct
 // Starts the `forever` HTTP server for communication with the forever CLI.
 // **NOTE:** This will change your `process.title`.
 //
-forever.startServer = <span class="fstat-no" title="function not covered" >function () {</span>
-<span class="cstat-no" title="statement not covered" >  var args = Array.prototype.slice.call(arguments),</span>
+forever.startServer = <span class="fstat-no" title="function not covered">function () {</span>
+<span class="cstat-no" title="statement not covered">  var args = Array.prototype.slice.call(arguments),</span>
       monitors = [],
       callback;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  args.forEach(<span class="fstat-no" title="function not covered" >function (a) {</span></span>
-<span class="cstat-no" title="statement not covered" >    if (Array.isArray(a)) {</span>
-<span class="cstat-no" title="statement not covered" >      monitors = monitors.concat(a.filter(<span class="fstat-no" title="function not covered" >function (m) {</span></span>
-<span class="cstat-no" title="statement not covered" >        return m instanceof forever.Monitor;</span>
+<span class="cstat-no" title="statement not covered">  args.forEach(<span class="fstat-no" title="function not covered">function (a) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (Array.isArray(a)) {</span>
+<span class="cstat-no" title="statement not covered">      monitors = monitors.concat(a.filter(<span class="fstat-no" title="function not covered">function (m) {</span></span>
+<span class="cstat-no" title="statement not covered">        return m instanceof forever.Monitor;</span>
       }));
     }
-    else <span class="cstat-no" title="statement not covered" >if (a instanceof forever.Monitor) {</span>
-<span class="cstat-no" title="statement not covered" >      monitors.push(a);</span>
+    else <span class="cstat-no" title="statement not covered">if (a instanceof forever.Monitor) {</span>
+<span class="cstat-no" title="statement not covered">      monitors.push(a);</span>
     }
-    else <span class="cstat-no" title="statement not covered" >if (typeof a === 'function') {</span>
-<span class="cstat-no" title="statement not covered" >      callback = a;</span>
+    else <span class="cstat-no" title="statement not covered">if (typeof a === 'function') {</span>
+<span class="cstat-no" title="statement not covered">      callback = a;</span>
     }
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  async.map(monitors, <span class="fstat-no" title="function not covered" >function (monitor, next) {</span></span>
-<span class="cstat-no" title="statement not covered" >    var worker = new forever.Worker({</span>
+<span class="cstat-no" title="statement not covered">  async.map(monitors, <span class="fstat-no" title="function not covered">function (monitor, next) {</span></span>
+<span class="cstat-no" title="statement not covered">    var worker = new forever.Worker({</span>
       monitor: monitor,
       sockPath: forever.config.get('sockPath'),
       exitOnStop: true
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    worker.start(<span class="fstat-no" title="function not covered" >function (err) {</span></span>
-<span class="cstat-no" title="statement not covered" >      return err ? next(err) : next(null, worker);</span>
+<span class="cstat-no" title="statement not covered">    worker.start(<span class="fstat-no" title="function not covered">function (err) {</span></span>
+<span class="cstat-no" title="statement not covered">      return err ? next(err) : next(null, worker);</span>
     });
-  }, callback || <span class="fstat-no" title="function not covered" >function () {</span>});
+  }, callback || <span class="fstat-no" title="function not covered">function () {</span>});
 };
 &nbsp;
 &nbsp;
@@ -2837,8 +2835,8 @@ forever.startServer = <span class="fstat-no" title="function not covered" >funct
 // Stops the process(es) with the specified index or script name
 // in the list of all processes
 //
-forever.stop = <span class="fstat-no" title="function not covered" >function (target, format) {</span>
-<span class="cstat-no" title="statement not covered" >  return stopOrRestart('stop', 'stop', format, target);</span>
+forever.stop = <span class="fstat-no" title="function not covered">function (target, format) {</span>
+<span class="cstat-no" title="statement not covered">  return stopOrRestart('stop', 'stop', format, target);</span>
 };
 &nbsp;
 //
@@ -2848,8 +2846,8 @@ forever.stop = <span class="fstat-no" title="function not covered" >function (ta
 // Restarts the process(es) with the specified index or script name
 // in the list of all processes
 //
-forever.restart = <span class="fstat-no" title="function not covered" >function (target, format) {</span>
-<span class="cstat-no" title="statement not covered" >  return stopOrRestart('restart', 'restart', format, target);</span>
+forever.restart = <span class="fstat-no" title="function not covered">function (target, format) {</span>
+<span class="cstat-no" title="statement not covered">  return stopOrRestart('restart', 'restart', format, target);</span>
 };
 &nbsp;
 //
@@ -2858,9 +2856,9 @@ forever.restart = <span class="fstat-no" title="function not covered" >function 
 // #### @format {boolean} Indicated if we should CLI format the returned output.
 // Stops the process with specified pid
 //
-forever.stopbypid = <span class="fstat-no" title="function not covered" >function (pid, format) {</span>
+forever.stopbypid = <span class="fstat-no" title="function not covered">function (pid, format) {</span>
   // stopByPid only capable of stopping, but can't restart
-<span class="cstat-no" title="statement not covered" >  return stopOrRestart('stop', 'stopByPid', format, pid);</span>
+<span class="cstat-no" title="statement not covered">  return stopOrRestart('stop', 'stopByPid', format, pid);</span>
 };
 &nbsp;
 //
@@ -2868,8 +2866,8 @@ forever.stopbypid = <span class="fstat-no" title="function not covered" >functio
 // #### @format {boolean} Value indicating if we should format output
 // Restarts all processes managed by forever.
 //
-forever.restartAll = <span class="fstat-no" title="function not covered" >function (format) {</span>
-<span class="cstat-no" title="statement not covered" >  return stopOrRestart('restart', 'restartAll', format);</span>
+forever.restartAll = <span class="fstat-no" title="function not covered">function (format) {</span>
+<span class="cstat-no" title="statement not covered">  return stopOrRestart('restart', 'restartAll', format);</span>
 };
 &nbsp;
 //
@@ -2877,8 +2875,8 @@ forever.restartAll = <span class="fstat-no" title="function not covered" >functi
 // #### @format {boolean} Value indicating if we should format output
 // Stops all processes managed by forever.
 //
-forever.stopAll = <span class="fstat-no" title="function not covered" >function (format) {</span>
-<span class="cstat-no" title="statement not covered" >  return stopOrRestart('stop', 'stopAll', format);</span>
+forever.stopAll = <span class="fstat-no" title="function not covered">function (format) {</span>
+<span class="cstat-no" title="statement not covered">  return stopOrRestart('stop', 'stopAll', format);</span>
 };
 &nbsp;
 //
@@ -2887,9 +2885,9 @@ forever.stopAll = <span class="fstat-no" title="function not covered" >function 
 // #### @callback {function} Continuation to respond to when complete.
 // Returns the list of all process data managed by forever.
 //
-forever.list = <span class="fstat-no" title="function not covered" >function (format, callback) {</span>
-<span class="cstat-no" title="statement not covered" >  getAllProcesses(<span class="fstat-no" title="function not covered" >function (err, processes) {</span></span>
-<span class="cstat-no" title="statement not covered" >    callback(err, forever.format(format, processes));</span>
+forever.list = <span class="fstat-no" title="function not covered">function (format, callback) {</span>
+<span class="cstat-no" title="statement not covered">  getAllProcesses(<span class="fstat-no" title="function not covered">function (err, processes) {</span></span>
+<span class="cstat-no" title="statement not covered">    callback(err, forever.format(format, processes));</span>
   });
 };
 &nbsp;
@@ -2902,84 +2900,84 @@ forever.list = <span class="fstat-no" title="function not covered" >function (fo
 // managed by forever. If no `length` is supplied then `forever.config.get('loglength`)`
 // is used.
 //
-forever.tail = <span class="fstat-no" title="function not covered" >function (target, options, callback) {</span>
-<span class="cstat-no" title="statement not covered" >  if (!callback &amp;&amp; typeof options === 'function') {</span>
-<span class="cstat-no" title="statement not covered" >    callback = options;</span>
-<span class="cstat-no" title="statement not covered" >    options.length = 0;</span>
-<span class="cstat-no" title="statement not covered" >    options.stream = false;</span>
+forever.tail = <span class="fstat-no" title="function not covered">function (target, options, callback) {</span>
+<span class="cstat-no" title="statement not covered">  if (!callback &amp;&amp; typeof options === 'function') {</span>
+<span class="cstat-no" title="statement not covered">    callback = options;</span>
+<span class="cstat-no" title="statement not covered">    options.length = 0;</span>
+<span class="cstat-no" title="statement not covered">    options.stream = false;</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  var that   = this,</span>
+<span class="cstat-no" title="statement not covered">  var that   = this,</span>
       length = options.length || forever.config.get('loglength'),
       stream = options.stream || forever.config.get('logstream'),
-      blanks = <span class="fstat-no" title="function not covered" >function (e, i, a) {</span> <span class="cstat-no" title="statement not covered" >return e !== ''; </span>},
-      title  = <span class="fstat-no" title="function not covered" >function (e, i, a) {</span> <span class="cstat-no" title="statement not covered" >return e.match(/^==&gt;/); </span>},
+      blanks = <span class="fstat-no" title="function not covered">function (e, i, a) {</span> <span class="cstat-no" title="statement not covered">return e !== ''; </span>},
+      title  = <span class="fstat-no" title="function not covered">function (e, i, a) {</span> <span class="cstat-no" title="statement not covered">return e.match(/^==&gt;/); </span>},
       args   = ['-n', length],
       logs;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (stream) { <span class="cstat-no" title="statement not covered" >args.unshift('-f'); </span>}</span>
+<span class="cstat-no" title="statement not covered">  if (stream) { <span class="cstat-no" title="statement not covered">args.unshift('-f'); </span>}</span>
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function tailProcess(procs, next) {</span>
-<span class="cstat-no" title="statement not covered" >    var count = 0,</span>
+<span class="fstat-no" title="function not covered">  function tailProcess(procs, next) {</span>
+<span class="cstat-no" title="statement not covered">    var count = 0,</span>
         map   = {},
         tail;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    procs.forEach(<span class="fstat-no" title="function not covered" >function (proc) {</span></span>
-<span class="cstat-no" title="statement not covered" >      args.push(proc.logFile);</span>
-<span class="cstat-no" title="statement not covered" >      map[proc.logFile] = { pid: proc.pid, file: proc.file };</span>
-<span class="cstat-no" title="statement not covered" >      count++;</span>
+<span class="cstat-no" title="statement not covered">    procs.forEach(<span class="fstat-no" title="function not covered">function (proc) {</span></span>
+<span class="cstat-no" title="statement not covered">      args.push(proc.logFile);</span>
+<span class="cstat-no" title="statement not covered">      map[proc.logFile] = { pid: proc.pid, file: proc.file };</span>
+<span class="cstat-no" title="statement not covered">      count++;</span>
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    tail = spawn('tail', args, {</span>
+<span class="cstat-no" title="statement not covered">    tail = spawn('tail', args, {</span>
       stdio: [null, 'pipe', 'pipe'],
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    tail.stdio[1].setEncoding('utf8');</span>
-<span class="cstat-no" title="statement not covered" >    tail.stdio[2].setEncoding('utf8');</span>
+<span class="cstat-no" title="statement not covered">    tail.stdio[1].setEncoding('utf8');</span>
+<span class="cstat-no" title="statement not covered">    tail.stdio[2].setEncoding('utf8');</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    tail.stdio[1].on('data', <span class="fstat-no" title="function not covered" >function (data) {</span></span>
-<span class="cstat-no" title="statement not covered" >      var chunk = data.split('\n\n');</span>
-<span class="cstat-no" title="statement not covered" >      chunk.forEach(<span class="fstat-no" title="function not covered" >function (logs) {</span></span>
-<span class="cstat-no" title="statement not covered" >        var logs = logs.split('\n').filter(blanks),</span>
+<span class="cstat-no" title="statement not covered">    tail.stdio[1].on('data', <span class="fstat-no" title="function not covered">function (data) {</span></span>
+<span class="cstat-no" title="statement not covered">      var chunk = data.split('\n\n');</span>
+<span class="cstat-no" title="statement not covered">      chunk.forEach(<span class="fstat-no" title="function not covered">function (logs) {</span></span>
+<span class="cstat-no" title="statement not covered">        var logs = logs.split('\n').filter(blanks),</span>
             file = logs.filter(title),
             lines,
             proc;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        proc = file.length</span>
+<span class="cstat-no" title="statement not covered">        proc = file.length</span>
           ? map[file[0].split(' ')[1]]
           : map[procs[0].logFile];
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        lines = count !== 1</span>
+<span class="cstat-no" title="statement not covered">        lines = count !== 1</span>
           ? logs.slice(1)
           : logs;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        lines.forEach(<span class="fstat-no" title="function not covered" >function (line) {</span></span>
-<span class="cstat-no" title="statement not covered" >          callback(null, { file: proc.file, pid: proc.pid, line: line });</span>
+<span class="cstat-no" title="statement not covered">        lines.forEach(<span class="fstat-no" title="function not covered">function (line) {</span></span>
+<span class="cstat-no" title="statement not covered">          callback(null, { file: proc.file, pid: proc.pid, line: line });</span>
         });
       });
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    tail.stdio[2].on('data', <span class="fstat-no" title="function not covered" >function (err) {</span></span>
-<span class="cstat-no" title="statement not covered" >      return callback(err);</span>
+<span class="cstat-no" title="statement not covered">    tail.stdio[2].on('data', <span class="fstat-no" title="function not covered">function (err) {</span></span>
+<span class="cstat-no" title="statement not covered">      return callback(err);</span>
     });
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  getAllProcesses(<span class="fstat-no" title="function not covered" >function (err, processes) {</span></span>
-<span class="cstat-no" title="statement not covered" >    if (err) {</span>
-<span class="cstat-no" title="statement not covered" >      return callback(err);</span>
+<span class="cstat-no" title="statement not covered">  getAllProcesses(<span class="fstat-no" title="function not covered">function (err, processes) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (err) {</span>
+<span class="cstat-no" title="statement not covered">      return callback(err);</span>
     }
-    else <span class="cstat-no" title="statement not covered" >if (!processes) {</span>
-<span class="cstat-no" title="statement not covered" >      return callback(new Error('Cannot find forever process: ' + target));</span>
+    else <span class="cstat-no" title="statement not covered">if (!processes) {</span>
+<span class="cstat-no" title="statement not covered">      return callback(new Error('Cannot find forever process: ' + target));</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    var procs = forever.findByIndex(target, processes)</span>
+<span class="cstat-no" title="statement not covered">    var procs = forever.findByIndex(target, processes)</span>
       || forever.findByScript(target, processes);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (!procs) {</span>
-<span class="cstat-no" title="statement not covered" >      return callback(new Error('No logs available for process: ' + target));</span>
+<span class="cstat-no" title="statement not covered">    if (!procs) {</span>
+<span class="cstat-no" title="statement not covered">      return callback(new Error('No logs available for process: ' + target));</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    tailProcess(procs, callback);</span>
+<span class="cstat-no" title="statement not covered">    tailProcess(procs, callback);</span>
   });
 };
 &nbsp;
@@ -2989,15 +2987,15 @@ forever.tail = <span class="fstat-no" title="function not covered" >function (ta
 // #### @processes {Array} Set of processes to find in.
 // Finds the process with the specified index.
 //
-forever.findById = <span class="fstat-no" title="function not covered" >function (id, processes) {</span>
-<span class="cstat-no" title="statement not covered" >  if (!processes) { <span class="cstat-no" title="statement not covered" >return null; </span>}</span>
+forever.findById = <span class="fstat-no" title="function not covered">function (id, processes) {</span>
+<span class="cstat-no" title="statement not covered">  if (!processes) { <span class="cstat-no" title="statement not covered">return null; </span>}</span>
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  var procs = processes.filter(<span class="fstat-no" title="function not covered" >function (p) {</span></span>
-<span class="cstat-no" title="statement not covered" >    return p.id === id;</span>
+<span class="cstat-no" title="statement not covered">  var procs = processes.filter(<span class="fstat-no" title="function not covered">function (p) {</span></span>
+<span class="cstat-no" title="statement not covered">    return p.id === id;</span>
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (procs.length === 0) { <span class="cstat-no" title="statement not covered" >procs = null; </span>}</span>
-<span class="cstat-no" title="statement not covered" >  return procs;</span>
+<span class="cstat-no" title="statement not covered">  if (procs.length === 0) { <span class="cstat-no" title="statement not covered">procs = null; </span>}</span>
+<span class="cstat-no" title="statement not covered">  return procs;</span>
 };
 &nbsp;
 //
@@ -3006,14 +3004,14 @@ forever.findById = <span class="fstat-no" title="function not covered" >function
 // #### @processes {Array} Set of processes to find in.
 // Finds the process with the specified index.
 //
-forever.findByIndex = <span class="fstat-no" title="function not covered" >function (index, processes) {</span>
-<span class="cstat-no" title="statement not covered" >  var indexAsNum = parseInt(index, 10),</span>
+forever.findByIndex = <span class="fstat-no" title="function not covered">function (index, processes) {</span>
+<span class="cstat-no" title="statement not covered">  var indexAsNum = parseInt(index, 10),</span>
       proc;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (indexAsNum == index) {</span>
-<span class="cstat-no" title="statement not covered" >    proc = processes &amp;&amp; processes[indexAsNum];</span>
+<span class="cstat-no" title="statement not covered">  if (indexAsNum == index) {</span>
+<span class="cstat-no" title="statement not covered">    proc = processes &amp;&amp; processes[indexAsNum];</span>
   }
-<span class="cstat-no" title="statement not covered" >  return proc ? [proc] : null;</span>
+<span class="cstat-no" title="statement not covered">  return proc ? [proc] : null;</span>
 };
 &nbsp;
 //
@@ -3022,20 +3020,20 @@ forever.findByIndex = <span class="fstat-no" title="function not covered" >funct
 // #### @processes {Array} Set of processes to find in.
 // Finds the process with the specified script name.
 //
-forever.findByScript = <span class="fstat-no" title="function not covered" >function (script, processes) {</span>
-<span class="cstat-no" title="statement not covered" >  if (!processes) { <span class="cstat-no" title="statement not covered" >return null; </span>}</span>
+forever.findByScript = <span class="fstat-no" title="function not covered">function (script, processes) {</span>
+<span class="cstat-no" title="statement not covered">  if (!processes) { <span class="cstat-no" title="statement not covered">return null; </span>}</span>
 &nbsp;
   // make script absolute.
-<span class="cstat-no" title="statement not covered" >  if (script.indexOf('/') != 0) {</span>
-<span class="cstat-no" title="statement not covered" >    script = path.resolve(process.cwd(), script);</span>
+<span class="cstat-no" title="statement not covered">  if (script.indexOf('/') != 0) {</span>
+<span class="cstat-no" title="statement not covered">    script = path.resolve(process.cwd(), script);</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  var procs = processes.filter(<span class="fstat-no" title="function not covered" >function (p) {</span></span>
-<span class="cstat-no" title="statement not covered" >    return p.file === script || path.join(p.spawnWith.cwd, p.file) === script;</span>
+<span class="cstat-no" title="statement not covered">  var procs = processes.filter(<span class="fstat-no" title="function not covered">function (p) {</span></span>
+<span class="cstat-no" title="statement not covered">    return p.file === script || path.join(p.spawnWith.cwd, p.file) === script;</span>
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (procs.length === 0) { <span class="cstat-no" title="statement not covered" >procs = null; </span>}</span>
-<span class="cstat-no" title="statement not covered" >  return procs;</span>
+<span class="cstat-no" title="statement not covered">  if (procs.length === 0) { <span class="cstat-no" title="statement not covered">procs = null; </span>}</span>
+<span class="cstat-no" title="statement not covered">  return procs;</span>
 };
 &nbsp;
 //
@@ -3044,15 +3042,15 @@ forever.findByScript = <span class="fstat-no" title="function not covered" >func
 // #### @processes {Array} Set of processes to find in.
 // Finds the process with the specified uid.
 //
-forever.findByUid = <span class="fstat-no" title="function not covered" >function (script, processes) {</span>
-<span class="cstat-no" title="statement not covered" >  var procs = !processes</span>
+forever.findByUid = <span class="fstat-no" title="function not covered">function (script, processes) {</span>
+<span class="cstat-no" title="statement not covered">  var procs = !processes</span>
     ? null
-    : processes.filter(<span class="fstat-no" title="function not covered" >function (p) {</span>
-<span class="cstat-no" title="statement not covered" >      return p.uid === script;</span>
+    : processes.filter(<span class="fstat-no" title="function not covered">function (p) {</span>
+<span class="cstat-no" title="statement not covered">      return p.uid === script;</span>
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (procs &amp;&amp; procs.length === 0) { <span class="cstat-no" title="statement not covered" >procs = null; </span>}</span>
-<span class="cstat-no" title="statement not covered" >  return procs;</span>
+<span class="cstat-no" title="statement not covered">  if (procs &amp;&amp; procs.length === 0) { <span class="cstat-no" title="statement not covered">procs = null; </span>}</span>
+<span class="cstat-no" title="statement not covered">  return procs;</span>
 };
 &nbsp;
 //
@@ -3061,17 +3059,17 @@ forever.findByUid = <span class="fstat-no" title="function not covered" >functio
 // #### @processes {Array} Set of processes to find in.
 // Finds the process with the specified pid.
 //
-forever.findByPid = <span class="fstat-no" title="function not covered" >function (pid, processes) {</span>
-<span class="cstat-no" title="statement not covered" >  pid = typeof pid === 'string'</span>
+forever.findByPid = <span class="fstat-no" title="function not covered">function (pid, processes) {</span>
+<span class="cstat-no" title="statement not covered">  pid = typeof pid === 'string'</span>
     ? parseInt(pid, 10)
     : pid;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  var procs = processes &amp;&amp; processes.filter(<span class="fstat-no" title="function not covered" >function (p) {</span></span>
-<span class="cstat-no" title="statement not covered" >    return p.pid === pid;</span>
+<span class="cstat-no" title="statement not covered">  var procs = processes &amp;&amp; processes.filter(<span class="fstat-no" title="function not covered">function (p) {</span></span>
+<span class="cstat-no" title="statement not covered">    return p.pid === pid;</span>
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (procs &amp;&amp; procs.length === 0) { <span class="cstat-no" title="statement not covered" >procs = null; </span>}</span>
-<span class="cstat-no" title="statement not covered" >  return procs || null;</span>
+<span class="cstat-no" title="statement not covered">  if (procs &amp;&amp; procs.length === 0) { <span class="cstat-no" title="statement not covered">procs = null; </span>}</span>
+<span class="cstat-no" title="statement not covered">  return procs || null;</span>
 };
 &nbsp;
 //
@@ -3081,43 +3079,43 @@ forever.findByPid = <span class="fstat-no" title="function not covered" >functio
 // Returns a formatted version of the `procs` supplied based on the column
 // configuration in `forever.config`.
 //
-forever.format = <span class="fstat-no" title="function not covered" >function (format, procs) {</span>
-<span class="cstat-no" title="statement not covered" >  if (!procs || procs.length === 0) {</span>
-<span class="cstat-no" title="statement not covered" >    return null;</span>
+forever.format = <span class="fstat-no" title="function not covered">function (format, procs) {</span>
+<span class="cstat-no" title="statement not covered">  if (!procs || procs.length === 0) {</span>
+<span class="cstat-no" title="statement not covered">    return null;</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  var index = 0,</span>
+<span class="cstat-no" title="statement not covered">  var index = 0,</span>
       columns = forever.config.get('columns'),
       rows = [['   '].concat(columns)],
       formatted;
 &nbsp;
-<span class="fstat-no" title="function not covered" >  function mapColumns(prefix, mapFn) {</span>
-<span class="cstat-no" title="statement not covered" >    return [prefix].concat(columns.map(mapFn));</span>
+<span class="fstat-no" title="function not covered">  function mapColumns(prefix, mapFn) {</span>
+<span class="cstat-no" title="statement not covered">    return [prefix].concat(columns.map(mapFn));</span>
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  if (format) {</span>
+<span class="cstat-no" title="statement not covered">  if (format) {</span>
     //
     // Iterate over the procs to see which has the
     // longest options string
     //
-<span class="cstat-no" title="statement not covered" >    procs.forEach(<span class="fstat-no" title="function not covered" >function (proc) {</span></span>
-<span class="cstat-no" title="statement not covered" >      rows.push(mapColumns('[' + index + ']', <span class="fstat-no" title="function not covered" >function (column) {</span></span>
-<span class="cstat-no" title="statement not covered" >        return forever.columns[column]</span>
+<span class="cstat-no" title="statement not covered">    procs.forEach(<span class="fstat-no" title="function not covered">function (proc) {</span></span>
+<span class="cstat-no" title="statement not covered">      rows.push(mapColumns('[' + index + ']', <span class="fstat-no" title="function not covered">function (column) {</span></span>
+<span class="cstat-no" title="statement not covered">        return forever.columns[column]</span>
           ? forever.columns[column].get(proc)
           : 'MISSING';
       }));
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      index++;</span>
+<span class="cstat-no" title="statement not covered">      index++;</span>
     });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    formatted = cliff.stringifyRows(rows, mapColumns('white', <span class="fstat-no" title="function not covered" >function (column) {</span></span>
-<span class="cstat-no" title="statement not covered" >      return forever.columns[column]</span>
+<span class="cstat-no" title="statement not covered">    formatted = cliff.stringifyRows(rows, mapColumns('white', <span class="fstat-no" title="function not covered">function (column) {</span></span>
+<span class="cstat-no" title="statement not covered">      return forever.columns[column]</span>
         ? forever.columns[column].color
         : 'white';
     }));
   }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return format ? formatted : procs;</span>
+<span class="cstat-no" title="statement not covered">  return format ? formatted : procs;</span>
 };
 &nbsp;
 //
@@ -3125,48 +3123,48 @@ forever.format = <span class="fstat-no" title="function not covered" >function (
 // Utility function for removing excess pid and
 // config, and log files used by forever.
 //
-forever.cleanUp = <span class="fstat-no" title="function not covered" >function (cleanLogs, allowManager) {</span>
-<span class="cstat-no" title="statement not covered" >  var emitter = new events.EventEmitter(),</span>
+forever.cleanUp = <span class="fstat-no" title="function not covered">function (cleanLogs, allowManager) {</span>
+<span class="cstat-no" title="statement not covered">  var emitter = new events.EventEmitter(),</span>
       pidPath = forever.config.get('pidPath');
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  getAllProcesses(<span class="fstat-no" title="function not covered" >function (err, processes) {</span></span>
-<span class="cstat-no" title="statement not covered" >    if (err) {</span>
-<span class="cstat-no" title="statement not covered" >      return process.nextTick(<span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >        emitter.emit('error', err);</span>
+<span class="cstat-no" title="statement not covered">  getAllProcesses(<span class="fstat-no" title="function not covered">function (err, processes) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (err) {</span>
+<span class="cstat-no" title="statement not covered">      return process.nextTick(<span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">        emitter.emit('error', err);</span>
       });
     }
-    else <span class="cstat-no" title="statement not covered" >if (cleanLogs) {</span>
-<span class="cstat-no" title="statement not covered" >      forever.cleanLogsSync(processes);</span>
+    else <span class="cstat-no" title="statement not covered">if (cleanLogs) {</span>
+<span class="cstat-no" title="statement not covered">      forever.cleanLogsSync(processes);</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    function unlinkProcess(proc, done) {</span>
-<span class="cstat-no" title="statement not covered" >      fs.unlink(path.join(pidPath, proc.uid + '.pid'), <span class="fstat-no" title="function not covered" >function () {</span></span>
+<span class="fstat-no" title="function not covered">    function unlinkProcess(proc, done) {</span>
+<span class="cstat-no" title="statement not covered">      fs.unlink(path.join(pidPath, proc.uid + '.pid'), <span class="fstat-no" title="function not covered">function () {</span></span>
         //
         // Ignore errors (in case the file doesnt exist).
         //
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        if (cleanLogs &amp;&amp; proc.logFile) {</span>
+<span class="cstat-no" title="statement not covered">        if (cleanLogs &amp;&amp; proc.logFile) {</span>
           //
           // If we are cleaning logs then do so if the process
           // has a logfile.
           //
-<span class="cstat-no" title="statement not covered" >          return fs.unlink(proc.logFile, <span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >            done();</span>
+<span class="cstat-no" title="statement not covered">          return fs.unlink(proc.logFile, <span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">            done();</span>
           });
         }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        done();</span>
+<span class="cstat-no" title="statement not covered">        done();</span>
       });
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    function cleanProcess(proc, done) {</span>
-<span class="cstat-no" title="statement not covered" >      if (proc.child &amp;&amp; proc.manager) {</span>
-<span class="cstat-no" title="statement not covered" >        return done();</span>
+<span class="fstat-no" title="function not covered">    function cleanProcess(proc, done) {</span>
+<span class="cstat-no" title="statement not covered">      if (proc.child &amp;&amp; proc.manager) {</span>
+<span class="cstat-no" title="statement not covered">        return done();</span>
       }
-      else <span class="cstat-no" title="statement not covered" >if (!proc.child &amp;&amp; !proc.manager</span>
+      else <span class="cstat-no" title="statement not covered">if (!proc.child &amp;&amp; !proc.manager</span>
         || (!proc.child &amp;&amp; proc.manager &amp;&amp; allowManager)
         || proc.dead) {
-<span class="cstat-no" title="statement not covered" >        return unlinkProcess(proc, done);</span>
+<span class="cstat-no" title="statement not covered">        return unlinkProcess(proc, done);</span>
       }
 &nbsp;
       //
@@ -3174,39 +3172,39 @@ forever.cleanUp = <span class="fstat-no" title="function not covered" >function 
       // in-case the child is currently restarting, but **only**
       // if we have not already waited for this process
       //
-<span class="cstat-no" title="statement not covered" >      if (!proc.waited) {</span>
-<span class="cstat-no" title="statement not covered" >        proc.waited = true;</span>
-<span class="cstat-no" title="statement not covered" >        return setTimeout(<span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >          checkProcess(proc, done);</span>
+<span class="cstat-no" title="statement not covered">      if (!proc.waited) {</span>
+<span class="cstat-no" title="statement not covered">        proc.waited = true;</span>
+<span class="cstat-no" title="statement not covered">        return setTimeout(<span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">          checkProcess(proc, done);</span>
         }, 500);
       }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >      done();</span>
+<span class="cstat-no" title="statement not covered">      done();</span>
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    function checkProcess(proc, next) {</span>
-<span class="cstat-no" title="statement not covered" >      proc.child = forever.checkProcess(proc.pid);</span>
-<span class="cstat-no" title="statement not covered" >      proc.manager = forever.checkProcess(proc.foreverPid);</span>
-<span class="cstat-no" title="statement not covered" >      cleanProcess(proc, next);</span>
+<span class="fstat-no" title="function not covered">    function checkProcess(proc, next) {</span>
+<span class="cstat-no" title="statement not covered">      proc.child = forever.checkProcess(proc.pid);</span>
+<span class="cstat-no" title="statement not covered">      proc.manager = forever.checkProcess(proc.foreverPid);</span>
+<span class="cstat-no" title="statement not covered">      cleanProcess(proc, next);</span>
     }
 &nbsp;
-<span class="cstat-no" title="statement not covered" >    if (processes &amp;&amp; processes.length &gt; 0) {</span>
-<span class="cstat-no" title="statement not covered" >      (<span class="fstat-no" title="function not covered" >function cleanBatch(batch) {</span></span>
-<span class="cstat-no" title="statement not covered" >        async.forEach(batch, checkProcess, <span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >          return processes.length &gt; 0</span>
+<span class="cstat-no" title="statement not covered">    if (processes &amp;&amp; processes.length &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered">      (<span class="fstat-no" title="function not covered">function cleanBatch(batch) {</span></span>
+<span class="cstat-no" title="statement not covered">        async.forEach(batch, checkProcess, <span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">          return processes.length &gt; 0</span>
             ? cleanBatch(processes.splice(0, 10))
             : emitter.emit('cleanUp');
         });
       })(processes.splice(0, 10));
     }
     else {
-<span class="cstat-no" title="statement not covered" >      process.nextTick(<span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >        emitter.emit('cleanUp');</span>
+<span class="cstat-no" title="statement not covered">      process.nextTick(<span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">        emitter.emit('cleanUp');</span>
       });
     }
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  return emitter;</span>
+<span class="cstat-no" title="statement not covered">  return emitter;</span>
 };
 &nbsp;
 //
@@ -3215,23 +3213,23 @@ forever.cleanUp = <span class="fstat-no" title="function not covered" >function 
 // Removes all log files from the root forever directory
 // that do not belong to current running forever processes.
 //
-forever.cleanLogsSync = <span class="fstat-no" title="function not covered" >function (processes) {</span>
-<span class="cstat-no" title="statement not covered" >  var root = forever.config.get('root'),</span>
+forever.cleanLogsSync = <span class="fstat-no" title="function not covered">function (processes) {</span>
+<span class="cstat-no" title="statement not covered">  var root = forever.config.get('root'),</span>
       files = fs.readdirSync(root),
       running,
       runningLogs;
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  running = processes &amp;&amp; processes.filter(<span class="fstat-no" title="function not covered" >function (p) {</span></span>
-<span class="cstat-no" title="statement not covered" >    return p &amp;&amp; p.logFile;</span>
+<span class="cstat-no" title="statement not covered">  running = processes &amp;&amp; processes.filter(<span class="fstat-no" title="function not covered">function (p) {</span></span>
+<span class="cstat-no" title="statement not covered">    return p &amp;&amp; p.logFile;</span>
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  runningLogs = running &amp;&amp; running.map(<span class="fstat-no" title="function not covered" >function (p) {</span></span>
-<span class="cstat-no" title="statement not covered" >    return p.logFile.split('/').pop();</span>
+<span class="cstat-no" title="statement not covered">  runningLogs = running &amp;&amp; running.map(<span class="fstat-no" title="function not covered">function (p) {</span></span>
+<span class="cstat-no" title="statement not covered">    return p.logFile.split('/').pop();</span>
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  files.forEach(<span class="fstat-no" title="function not covered" >function (file) {</span></span>
-<span class="cstat-no" title="statement not covered" >    if (/\.log$/.test(file) &amp;&amp; (!runningLogs || runningLogs.indexOf(file) === -1)) {</span>
-<span class="cstat-no" title="statement not covered" >      fs.unlinkSync(path.join(root, file));</span>
+<span class="cstat-no" title="statement not covered">  files.forEach(<span class="fstat-no" title="function not covered">function (file) {</span></span>
+<span class="cstat-no" title="statement not covered">    if (/\.log$/.test(file) &amp;&amp; (!runningLogs || runningLogs.indexOf(file) === -1)) {</span>
+<span class="cstat-no" title="statement not covered">      fs.unlinkSync(path.join(root, file));</span>
     }
   });
 };
@@ -3241,8 +3239,8 @@ forever.cleanLogsSync = <span class="fstat-no" title="function not covered" >fun
 // #### @logFile {string} Log file path
 // Determines the full logfile path name
 //
-forever.logFilePath = <span class="fstat-no" title="function not covered" >function (logFile, uid) {</span>
-<span class="cstat-no" title="statement not covered" >  return logFile &amp;&amp; (logFile[0] === '/' || logFile[1] === ':')</span>
+forever.logFilePath = <span class="fstat-no" title="function not covered">function (logFile, uid) {</span>
+<span class="cstat-no" title="statement not covered">  return logFile &amp;&amp; (logFile[0] === '/' || logFile[1] === ':')</span>
     ? logFile
     : path.join(forever.config.get('root'), logFile || (uid || 'forever') + '.log');
 };
@@ -3252,8 +3250,8 @@ forever.logFilePath = <span class="fstat-no" title="function not covered" >funct
 // #### @logFile {string} Pid file path
 // Determines the full pid file path name
 //
-forever.pidFilePath = <span class="fstat-no" title="function not covered" >function (pidFile) {</span>
-<span class="cstat-no" title="statement not covered" >  return pidFile &amp;&amp; (pidFile[0] === '/' || pidFile[1] === ':')</span>
+forever.pidFilePath = <span class="fstat-no" title="function not covered">function (pidFile) {</span>
+<span class="cstat-no" title="statement not covered">  return pidFile &amp;&amp; (pidFile[0] === '/' || pidFile[1] === ':')</span>
     ? pidFile
     : path.join(forever.config.get('pidPath'), pidFile);
 };
@@ -3263,22 +3261,22 @@ forever.pidFilePath = <span class="fstat-no" title="function not covered" >funct
 // #### @monitor {forever.Monitor} Monitor to log events for
 // Logs important restart and error events to `console.error`
 //
-forever.logEvents = <span class="fstat-no" title="function not covered" >function (monitor) {</span>
-<span class="cstat-no" title="statement not covered" >  monitor.on('watch:error', <span class="fstat-no" title="function not covered" >function (info) {</span></span>
-<span class="cstat-no" title="statement not covered" >    forever.out.error(info.message);</span>
-<span class="cstat-no" title="statement not covered" >    forever.out.error(info.error);</span>
+forever.logEvents = <span class="fstat-no" title="function not covered">function (monitor) {</span>
+<span class="cstat-no" title="statement not covered">  monitor.on('watch:error', <span class="fstat-no" title="function not covered">function (info) {</span></span>
+<span class="cstat-no" title="statement not covered">    forever.out.error(info.message);</span>
+<span class="cstat-no" title="statement not covered">    forever.out.error(info.error);</span>
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  monitor.on('watch:restart', <span class="fstat-no" title="function not covered" >function (info) {</span></span>
-<span class="cstat-no" title="statement not covered" >    forever.out.error('restarting script because ' + info.file + ' changed');</span>
+<span class="cstat-no" title="statement not covered">  monitor.on('watch:restart', <span class="fstat-no" title="function not covered">function (info) {</span></span>
+<span class="cstat-no" title="statement not covered">    forever.out.error('restarting script because ' + info.file + ' changed');</span>
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  monitor.on('restart', <span class="fstat-no" title="function not covered" >function () {</span></span>
-<span class="cstat-no" title="statement not covered" >    forever.out.error('Script restart attempt #' + monitor.times);</span>
+<span class="cstat-no" title="statement not covered">  monitor.on('restart', <span class="fstat-no" title="function not covered">function () {</span></span>
+<span class="cstat-no" title="statement not covered">    forever.out.error('Script restart attempt #' + monitor.times);</span>
   });
 &nbsp;
-<span class="cstat-no" title="statement not covered" >  monitor.on('exit:code', <span class="fstat-no" title="function not covered" >function (code, signal) {</span></span>
-<span class="cstat-no" title="statement not covered" >    forever.out.error((code !== null &amp;&amp; code !== undefined)</span>
+<span class="cstat-no" title="statement not covered">  monitor.on('exit:code', <span class="fstat-no" title="function not covered">function (code, signal) {</span></span>
+<span class="cstat-no" title="statement not covered">    forever.out.error((code !== null &amp;&amp; code !== undefined)</span>
       ? 'Forever detected script exited with code: ' + code
       : 'Forever detected script was killed by signal: ' + signal);
   });
@@ -3292,65 +3290,66 @@ forever.logEvents = <span class="fstat-no" title="function not covered" >functio
 forever.columns = {
   uid: {
     color: 'white',
-    get: <span class="fstat-no" title="function not covered" >function (proc) {</span>
-<span class="cstat-no" title="statement not covered" >      return proc.uid;</span>
+    get: <span class="fstat-no" title="function not covered">function (proc) {</span>
+<span class="cstat-no" title="statement not covered">      return proc.uid;</span>
     }
   },
   id: {
     color: 'white',
-    get: <span class="fstat-no" title="function not covered" >function (proc) {</span>
-<span class="cstat-no" title="statement not covered" >      return proc.id ? proc.id : '';</span>
+    get: <span class="fstat-no" title="function not covered">function (proc) {</span>
+<span class="cstat-no" title="statement not covered">      return proc.id ? proc.id : '';</span>
     }
   },
   command: {
     color: 'grey',
-    get: <span class="fstat-no" title="function not covered" >function (proc) {</span>
-<span class="cstat-no" title="statement not covered" >      return (proc.command || 'node').grey;</span>
+    get: <span class="fstat-no" title="function not covered">function (proc) {</span>
+<span class="cstat-no" title="statement not covered">      return (proc.command || 'node').grey;</span>
     }
   },
   script: {
     color: 'grey',
-    get: <span class="fstat-no" title="function not covered" >function (proc) {</span>
-<span class="cstat-no" title="statement not covered" >      return [proc.file].concat(proc.args).join(' ').grey;</span>
+    get: <span class="fstat-no" title="function not covered">function (proc) {</span>
+<span class="cstat-no" title="statement not covered">      return [proc.file].concat(proc.args).join(' ').grey;</span>
     }
   },
   forever: {
     color: 'white',
-    get: <span class="fstat-no" title="function not covered" >function (proc) {</span>
-<span class="cstat-no" title="statement not covered" >      return proc.foreverPid;</span>
+    get: <span class="fstat-no" title="function not covered">function (proc) {</span>
+<span class="cstat-no" title="statement not covered">      return proc.foreverPid;</span>
     }
   },
   pid: {
     color: 'white',
-    get: <span class="fstat-no" title="function not covered" >function (proc) {</span>
-<span class="cstat-no" title="statement not covered" >      return proc.pid;</span>
+    get: <span class="fstat-no" title="function not covered">function (proc) {</span>
+<span class="cstat-no" title="statement not covered">      return proc.pid;</span>
     }
   },
   logfile: {
     color: 'magenta',
-    get: <span class="fstat-no" title="function not covered" >function (proc) {</span>
-<span class="cstat-no" title="statement not covered" >      return proc.logFile ? proc.logFile.magenta : '';</span>
+    get: <span class="fstat-no" title="function not covered">function (proc) {</span>
+<span class="cstat-no" title="statement not covered">      return proc.logFile ? proc.logFile.magenta : '';</span>
     }
   },
   dir: {
     color: 'grey',
-    get: <span class="fstat-no" title="function not covered" >function (proc) {</span>
-<span class="cstat-no" title="statement not covered" >      return proc.sourceDir.grey;</span>
+    get: <span class="fstat-no" title="function not covered">function (proc) {</span>
+<span class="cstat-no" title="statement not covered">      return proc.sourceDir.grey;</span>
     }
   },
   uptime: {
     color: 'yellow',
-    get: <span class="fstat-no" title="function not covered" >function (proc) {</span>
-<span class="cstat-no" title="statement not covered" >      return proc.running ? timespan.fromDates(new Date(proc.ctime), new Date()).toString().yellow : "STOPPED".red;</span>
+    get: <span class="fstat-no" title="function not covered">function (proc) {</span>
+<span class="cstat-no" title="statement not covered">      return proc.running ? timespan.fromDates(new Date(proc.ctime), new Date()).toString().yellow : "STOPPED".red;</span>
     }
   }
 };
 &nbsp;
 &nbsp;</pre></td></tr>
-</table></pre>
+</tbody></table></pre>
 </div>
 <div class="footer">
     <div class="meta">Generated by <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a> at Sat Apr 15 2017 21:01:20 GMT+0000 (UTC)</div>
 </div>
-</body>
-</html>
+
+
+</body></html>
